@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">History</string>
+    <string name="list_kosong">Belum ada data</string>
+    <string name="x_diklik">%1$s diklik</string>
+    <string name="tambah_data">Validasi Tinggi</string>
+    <string name="umur">umur</string>
+    <string name="umur_MS">Umur : %1$s</string>
+    <string name="tinggi_MS">Tinggi : %1$s</string>
+    <string name="kembali">Kembali</string>
+    <string name="simpan">Simpan</string>
+    <string name="edit_BMI">Ubah Data</string>
+    <string name="list_jeniskelamin">Jenis Kelamin</string>
+    <string name="invalid">Umur dan Tinggi tidak boleh kosong!</string>
+    <string name="lainnya">Opsi Lainnya</string>
+    <string name="hapus">Hapus Data</string>
+    <string name="pesan_hapus">Apakah anda ingin menghapusnya?</string>
+    <string name="tombol_hapus">Hapus</string>
+    <string name="tombol_batal">Batal</string>
+    <string name="list">Tampilan List</string>
+    <string name="grid">Tampilan Grid</string>
+    <string name="pendek">Pendek</string>
+    <string name="ideal">Ideal</string>
+    <string name="tinggi">Tinggi</string>
+    <string name="kategori">Kategori : %1$s</string>
+</resources>
