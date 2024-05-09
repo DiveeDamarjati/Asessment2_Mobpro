@@ -126,6 +126,12 @@ fun ScreenContent(showList: Boolean, modifier : Modifier, navController: NavHost
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ){
+            Icon(
+                painter = painterResource(
+                    R.drawable.baseline_do_not_disturb_24
+                ),
+                contentDescription = ""
+            )
             Text(text = stringResource(id = R.string.list_kosong))
         }
     }else{
