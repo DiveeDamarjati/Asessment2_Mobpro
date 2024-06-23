@@ -22,4 +22,6 @@
     <string name="ideal">Ideal</string>
     <string name="tinggi">Tinggi</string>
     <string name="kategori">Kategori : %1$s</string>
+    <string name="kirim">Kirim</string>
+    <string name="kirim_data">Umur: %1$s Tinggi: %2$s Kategori: %3$s</string>
 </resources>

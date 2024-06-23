@@ -206,7 +206,7 @@ fun FormTinggi(
             modifier = Modifier.fillMaxWidth()
         ){
             Text(text = stringResource(id = R.string.list_jeniskelamin))
-            listOf("Anak","Laki-Laki", "Perempuan").forEach { jenisKelaminOpsi ->
+            listOf("Laki-Laki", "Perempuan").forEach { jenisKelaminOpsi ->
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.clickable {
@@ -276,20 +276,6 @@ fun hitung(tinggi: String, umur: String, jenisKelamin: String): Int {
         } else{
             if (tinggiFloat < 157) R.string.pendek
             else if (tinggiFloat <= 160 ) R.string.ideal
-            else R.string.tinggi
-        }
-    } else if(jenisKelamin.equals("Anak", ignoreCase = true)) {
-        if (umurFloat in 1.0 .. 3.0){
-            if (tinggiFloat < 92) R.string.pendek
-            else if(tinggiFloat <= 95) R.string.ideal
-            else R.string.tinggi
-        } else if (umurFloat in 4.0 .. 6.0){
-            if (tinggiFloat < 113) R.string.pendek
-            else if (tinggiFloat <= 116) R.string.ideal
-            else R.string.tinggi
-        } else {
-            if (tinggiFloat < 130) R.string.pendek
-            else if (tinggiFloat <= 133) R.string.ideal
             else R.string.tinggi
         }
     } else {

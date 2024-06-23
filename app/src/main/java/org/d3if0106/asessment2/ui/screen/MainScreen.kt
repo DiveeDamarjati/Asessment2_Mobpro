@@ -1,5 +1,7 @@
 package org.d3if0106.asessment2.ui.screen
 
+import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
@@ -16,6 +18,7 @@ import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
@@ -112,11 +115,12 @@ fun ScreenContent(showList: Boolean, modifier : Modifier, navController: NavHost
 //    val data = emptyList<Catatan>() <- apabila ingin data kosong
 //    val data = viewModel.data
 
-    val context = LocalContext.current
+    var context = LocalContext.current
     val db = TinggiDb.getInstance(context)
     val factory = ViewModelFactory(db.dao)
     val viewModel: MainViewModel = viewModel(factory = factory)
     val data by viewModel.data.collectAsState()
+
 
     if (data.isEmpty()){
         Column (
@@ -169,6 +173,8 @@ fun ScreenContent(showList: Boolean, modifier : Modifier, navController: NavHost
 
 @Composable
 fun ListItem(Tinggi: Tinggi, onClick: () -> Unit){
+    var context = LocalContext.current
+
     Column (
         modifier = Modifier
             .fillMaxWidth()
@@ -181,11 +187,24 @@ fun ListItem(Tinggi: Tinggi, onClick: () -> Unit){
         Text(text = stringResource(id = R.string.kategori, stringResource(id = hitung(Tinggi.tinggi, Tinggi.umur, Tinggi.jenis_kelamin))))
         Text(text = Tinggi.jenis_kelamin, maxLines = 1, overflow = TextOverflow.Ellipsis)
         Text(text = Tinggi.tanggal, maxLines = 1, overflow = TextOverflow.Ellipsis)
+        Button(onClick = {
+            shareData(
+                context = context,
+                message = context.getString(R.string.kirim_data, Tinggi.umur, Tinggi.tinggi, context.getString(
+                    hitung(Tinggi.tinggi, Tinggi.umur, Tinggi.jenis_kelamin)
+                ))
+            )
+        }
+        ) {
+            Text(text = stringResource(id = R.string.kirim))
+        }
     }
 }
 
 @Composable
 fun GridItem(Tinggi: Tinggi, onClick: () -> Unit){
+    var context = LocalContext.current
+
     Card (
         modifier = Modifier
             .fillMaxWidth()
@@ -226,7 +245,27 @@ fun GridItem(Tinggi: Tinggi, onClick: () -> Unit){
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
+            Button(onClick = {
+                    shareData(
+                        context = context,
+                        message = context.getString(R.string.kirim_data, Tinggi.umur, Tinggi.tinggi, context.getString(
+                            hitung(Tinggi.tinggi, Tinggi.umur, Tinggi.jenis_kelamin)
+                        ))
+                    )
+            }
+            ) {
+                Text(text = stringResource(id = R.string.kirim))
+            }
         }
+    }
+}
+private fun shareData(context: Context, message: String){
+    val shareIntent = Intent(Intent.ACTION_SEND).apply {
+        type = "text/plain"
+        putExtra(Intent.EXTRA_TEXT, message)
+    }
+    if (shareIntent.resolveActivity(context.packageManager) != null){
+        context.startActivity(shareIntent)
     }
 }
 
